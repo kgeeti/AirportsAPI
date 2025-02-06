@@ -1,0 +1,18 @@
+@startuml
+
+group Airports API
+    start
+    : start.spring.io;
+    : NetBeans: Import do .ZIP;
+    : Clean & Build no projeto;
+    : Definir Classe Driver;
+    : application.properties;
+    : application-test.properties;
+    : Classe Airports;
+    : Entender notações JPA;
+    : Seed base aerportos;
+    : Teste ambiente;
+
+stop
+end group
+@enduml
