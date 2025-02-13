@@ -8,6 +8,7 @@
  */
 package br.eti.kge.airports.controllers;
 
+import br.eti.kge.airports.DTO.AirportMinDTO;
 import br.eti.kge.airports.entities.Airport;
 import br.eti.kge.airports.services.AirportService;
 import java.util.List;
@@ -43,29 +44,54 @@ public class AirportController {
         List<Airport> result = airportService.findAll();
         return result;
     }
-    
+
     /**
      * Endpoint /airports/city/{cityName}
      * preparado para devolver código de status conforme
      * padronização REST.
+     *
      * @param cityName
-     * @return 
+     * @return
      */
     @GetMapping("/city/{cityName}")
     public ResponseEntity<List<Airport>> findByCityIgnoreCase(@PathVariable String cityName) {
         List<Airport> result = airportService.findByCity(cityName);
-        
+
         if (result.isEmpty()) {
             // Ops.. lista vazia...
             // notFound devolve 404
             return ResponseEntity.notFound().build();
-        
+
         } else {
             // Eba! Tem dados!
             // ok devolve 200
             return ResponseEntity.ok(result);
         }
-        
+
     }
 
+    /**
+     * Endpoint /airports/country/{countryName}
+     * preparado para devolver apenas os dados básicos solicitados no escopo
+     * id, nome do aeroporto, cidade e IATA.
+     * 
+     * 
+     * @param countryName
+     * @return 
+     */
+    @GetMapping("/country/{countryName}")
+    public ResponseEntity<List<AirportMinDTO>> findByCountryIgnoreCase(@PathVariable String countryName) {
+
+        List<AirportMinDTO> result = airportService.findByCountry(countryName);
+        if (result.isEmpty()) {
+            // Ops.. lista vazia...
+            // notFound devolve 404
+            return ResponseEntity.notFound().build();
+
+        } else {
+            // Eba! Tem dados!
+            // ok devolve 200
+            return ResponseEntity.ok(result);
+        }
+    }
 }
