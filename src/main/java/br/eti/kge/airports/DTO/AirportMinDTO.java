@@ -9,6 +9,7 @@
 package br.eti.kge.airports.DTO;
 
 import br.eti.kge.airports.entities.Airport;
+import java.io.Serializable;
 
 /**
  * Classe para representar um pequeno conjunto de dados de Airport
@@ -31,6 +32,24 @@ public class AirportMinDTO {
         this.name = airport.getName();
         this.city = airport.getCity();
         this.iataCode = airport.getIataCode();
-    }   
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getIataCode() {
+        return iataCode;
+    }
+    
+    
     
 }
