@@ -1,4 +1,4 @@
- /*
+/*
 * _  ______        _____ _   _   ____       
 * | |/ / ___| ___  | ____| |_(_) | __ ) _ __ 
 * | ' / |  _ / _ \ |  _| | __| | |  _ \| '__|
@@ -16,49 +16,62 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Interage com os dados recebidos da camada de acesso a dados e mapeia-os para um DTO específico.
+ * Interage com os dados recebidos da camada de acesso a dados e mapeia-os para
+ * um DTO específico.
+ *
  * @author KGe
  */
-
 @Service
 public class AirportService {
-    
+
     @Autowired
     private AirportRepository airportRepository;
-    
+
     /**
      * Retorna DTO Airports (Completo - Todos os atributos).
-     * @return 
+     *
+     * @return
      */
     public List<Airport> findAll() {
-        
+
         List<Airport> result = airportRepository.findAll();
         return result;
-        
+
     }
-    
+
     /**
      * Retorna DTO Airports filtrado por cidade.
+     *
      * @param city
-     * @return 
+     * @return
      */
     public List<Airport> findByCity(String city) {
         List<Airport> result = airportRepository.findByCityIgnoreCase(city);
         return result;
     }
-    
+
     /**
      * Retorna DTO AirportsMinDTO filtrado por country (pais).
-     * 
+     *
      * @param country
-     * @return 
+     * @return
      */
     public List<AirportMinDTO> findByCountry(String country) {
         List<Airport> resultAirport = airportRepository.findByCountryIgnoreCase(country);
-        
+
         List<AirportMinDTO> resultDTO = resultAirport.stream()
                 .map(x -> new AirportMinDTO(x)).toList();
-      
+
         return resultDTO;
+    }
+
+    /**
+     * Retorna DTO Airport por iataCode
+     * @param iataCode
+     * @return 
+     */
+    public Airport findByIataCode(String iataCode) {
+        Airport result = airportRepository.findByIataCode(iataCode);
+        return result;
     }
 }

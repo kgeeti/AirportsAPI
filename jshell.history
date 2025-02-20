@@ -1,0 +1,5 @@
+EXPRESSION#>exit
+EXPRESSION#>q
+EXPRESSION#>?
+STATEMENT#>System.out.println("OI Mundo");
+VAR#>Airport teste
