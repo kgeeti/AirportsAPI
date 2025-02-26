@@ -26,6 +26,12 @@ public class AirportMinDTO {
 
     public AirportMinDTO() {
     }
+    
+    /**
+     * Construtor. Mapeia um Airport para um 
+     * AirportMinDTO.
+     * @param airport 
+     */
 
     public AirportMinDTO(Airport airport) {
         this.id = airport.getId();
