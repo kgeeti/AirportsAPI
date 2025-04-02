@@ -134,8 +134,8 @@ public class AirportController {
      */
     @GetMapping("/nearme")
     public ResponseEntity<List<AirportNearMeDTO>> findNearMe(
-            @RequestParam double latitude, 
-            @RequestParam double longitude ) {
+            @RequestParam(required = true) double latitude, 
+            @RequestParam(required = true) double longitude ) {
         
         List<AirportNearMeDTO> result = airportService.findNearMe(latitude, longitude);
         
