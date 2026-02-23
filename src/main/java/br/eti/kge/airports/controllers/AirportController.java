@@ -12,7 +12,9 @@ import br.eti.kge.airports.DTO.AirportMinDTO;
 import br.eti.kge.airports.DTO.AirportNearMeDTO;
 import br.eti.kge.airports.entities.Airport;
 import br.eti.kge.airports.services.AirportService;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author KGe
  */
 @RestController
+@CrossOrigin
 public class AirportController {
 
     @Autowired
@@ -41,7 +44,6 @@ public class AirportController {
      * @return
      */
     @GetMapping("/airport")
-    @CrossOrigin
     public List<Airport> findAll() {
         List<Airport> result = airportService.findAll();
         return result;
@@ -149,6 +151,13 @@ public class AirportController {
             // ok devolve 200
             return ResponseEntity.ok(result);
         }
+    }
+    
+    @GetMapping("/checkHealth")
+    public ResponseEntity<Map<String, Boolean>> checkHealth() {
+        Map<String, Boolean> dataHealth = new HashMap<>();
+        dataHealth.put("online", true);
+        return ResponseEntity.ok(dataHealth);
     }
     
 }
